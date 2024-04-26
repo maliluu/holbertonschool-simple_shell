@@ -22,6 +22,7 @@ int main() {
         break;
       }
       dup2(save_in, STDOUT_FILENO);
+      dup2(fileno(stderr), STDOUT_FILENO);
     }
 
     printf("#cisfun$ ");
@@ -30,6 +31,7 @@ int main() {
       dup2(save_in, STDIN_FILENO);
       close(save_in);
       save_in = -1;
+      dup2(STDERR_FILENO, STDERR_FILENO);
     }
 
     if (fgets(command, MAX_LINE, stdin) == NULL) {
@@ -63,5 +65,6 @@ int main() {
       waitpid(pid, &status, 0);
     }
   }
+
   return 0;
 }
