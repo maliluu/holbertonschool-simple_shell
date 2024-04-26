@@ -13,7 +13,6 @@ int main() {
   int running = 1;
   pid_t pid;
 
-  // Declare args before the loop
   char *args[] = {NULL};  // Empty argument array
 
   while (running) {
