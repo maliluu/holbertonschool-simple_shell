@@ -93,10 +93,3 @@ void printerrorex(char *file, char **argv, int count, char *message)
 	_putchar(argv[1]);
 	write(STDOUT_FILENO, "\n", 1);
 }
-
-int ls(char *s, char **argv, char *file, char **environ, int count, int out)
-{
-	(void)s; (void)argv; (void)file; (void)environ; (void)count; (void)out;
-	write(STDOUT_FILENO, "Directory listing\n", 17);
-	return 0;
-}
