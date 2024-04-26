@@ -46,7 +46,6 @@ int main() {
       perror("fork");
       continue;
     } else if (pid == 0) {
-      // Check for pipe using `isatty(fileno(stdin))`
       if (!isatty(fileno(stdin))) {
         is_piped = 1;  // Set piped flag if not a terminal
       }
