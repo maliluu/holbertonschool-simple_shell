@@ -11,7 +11,7 @@ extern char** environ;
 int main() {
   char command[MAX_LINE];
   int running = 1;
-  pid_t pid;  // Declare pid before the loop
+  pid_t pid;
 
   while (running) {
     printf("#cisfun$ ");
@@ -37,7 +37,7 @@ int main() {
       perror("fork");
       continue;
     } else if (pid == 0) {
-      char *args[] = {NULL};  // Empty argument array
+      char *args[] = {NULL};
       if (execve(command, args, environ) == -1) {
         fprintf(stderr, "%s: No such file or directory\n", command);
       }
