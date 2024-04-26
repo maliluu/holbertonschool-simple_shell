@@ -1,0 +1,34 @@
+teractive(char **environ, char *file)
+{
+  char *str = NULL, buf = '\0';
+  int out = 0;
+  size_t size = 64, multi = 1, index = 0;
+
+  str = malloc(sizeof(char) * size);
+  if (!str)
+    exit(0);
+  while (read(STDIN_FILENO, &buf, 1) > 0)
+    {
+      str[index] = buf;
+      if (buf == '\0' || buf == '\n')
+	{
+	  str[index + 1] = '\0';
+	  if (check_string1(str, _strlen(str)) == 0)
+	    out = arguments1(file, environ, str, out);
+	  index = -1;
+	  free(str);
+	  str = malloc(sizeof(char) * size);
+	  if (!str)
+	    exit(0);
+	}
+      if (index == (size * multi) - 2)
+	{
+	  str[index + 1] = '\0';
+	  str = _realloc(str, size * multi, size * (multi + 1));
+	  multi++;
+	}
+      index++;
+    }
+  free(str);
+  exit(out);
+}~B
