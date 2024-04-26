@@ -17,7 +17,6 @@ int main() {
 
   while (running) {
     if (!is_piped) {
-      // Print prompt only if not piped
       printf("#cisfun$ ");
     }
 
@@ -30,7 +29,6 @@ int main() {
       break;
     }
 
-    // Reset piped flag for next command
     is_piped = 0;
 
     command[strcspn(command, "\n")] = '\0';
