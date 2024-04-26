@@ -13,7 +13,7 @@ int main() {
   int running = 1;
   pid_t pid;
 
-  char *args[] = {NULL};  // Empty argument array
+  char *args[] = {NULL};
 
   while (running) {
     printf("#cisfun$ ");
