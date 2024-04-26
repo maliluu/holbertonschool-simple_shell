@@ -13,12 +13,11 @@ int main() {
   int running = 1;
   pid_t pid;
 
-  int is_piped = 0;
+  // Declare args before the loop
+  char *args[] = {NULL};  // Empty argument array
 
   while (running) {
-    if (!is_piped) {
-      printf("#cisfun$ ");
-    }
+    printf("#cisfun$ ");
 
     if (fgets(command, MAX_LINE, stdin) == NULL) {
       if (feof(stdin)) {
@@ -28,8 +27,6 @@ int main() {
       }
       break;
     }
-
-    is_piped = 0;
 
     command[strcspn(command, "\n")] = '\0';
 
@@ -43,10 +40,6 @@ int main() {
       perror("fork");
       continue;
     } else if (pid == 0) {
-      if (!isatty(fileno(stdin))) {
-        is_piped = 1; 
-      }
-      char *args[] = {NULL};
       if (execve(command, args, environ) == -1) {
         fprintf(stderr, "%s: No such file or directory\n", command);
       }
