@@ -160,4 +160,4 @@ _strtok
 
 For More Info About It Check The Man Page:
 
-    
+    https://github.com/maliluu/holbertonschool-simple_shell/blob/main/man_1_simple_shell
