@@ -158,9 +158,6 @@ _strdup
 _getenv
 _strtok
 
-For More Info About It Check The Man Page by:
+For More Info About It Check The Man Page:
 
-    username@prompt:~$ man ./man_1_simple_shell
-
-## Authors
-Nacho Peralta & Kevin Fundora
+    
