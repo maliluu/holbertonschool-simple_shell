@@ -1,4 +1,4 @@
-#Ainclude "main.h"
+#include "main.h"
 /**
  * newline - print a new line.
  * @number: indicates whether to start the program or not.
