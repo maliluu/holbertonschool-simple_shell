@@ -6,10 +6,12 @@
 
 #define MAX_LINE 256
 
+extern char** environ;
+
 int main() {
-    extern char** environ;
   char command[MAX_LINE];
   int running = 1;
+  pid_t pid;  // Declare pid before the loop
 
   while (running) {
     printf("#cisfun$ ");
@@ -30,13 +32,13 @@ int main() {
       continue;
     }
 
-    pid_t pid;
     pid = fork();
     if (pid < 0) {
       perror("fork");
       continue;
     } else if (pid == 0) {
-      if (execve(command, NULL, environ) == -1) {
+      char *args[] = {NULL};  // Empty argument array
+      if (execve(command, args, environ) == -1) {
         fprintf(stderr, "%s: No such file or directory\n", command);
       }
       exit(EXIT_FAILURE);
