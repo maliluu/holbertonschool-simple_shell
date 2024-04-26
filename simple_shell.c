@@ -15,13 +15,19 @@ int main() {
 
   while (running) {
     if (!isatty(fileno(stdin))) {
-      int save_in = dup(STDIN_FILENO); 
-      dup2(fileno(stdin), STDOUT_FILENO);
-      printf("#cisfun$ ");
-      dup2(save_in, STDIN_FILENO); 
+      int save_in = dup(STDIN_FILENO);
+      if (save_in == -1) {
+        perror("dup");
+        break;
+      }
+      dup2(save_in, STDOUT_FILENO);
+    }
+
+    printf("#cisfun$ ");
+
+    if (save_in != -1) {
+      dup2(save_in, STDIN_FILENO);
       close(save_in);
-    } else {
-      printf("#cisfun$ ");
     }
 
     if (fgets(command, MAX_LINE, stdin) == NULL) {
@@ -55,5 +61,6 @@ int main() {
       waitpid(pid, &status, 0);
     }
   }
+
   return 0;
 }
