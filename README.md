@@ -1,6 +1,6 @@
 # SIMPLE SHELL PROJECT
 
-## Introduction 🚀
+## Introduction
 
 This is a simple shell project in which the operations of a shell have been replicated, containing some of its most basic characteristics.
 
