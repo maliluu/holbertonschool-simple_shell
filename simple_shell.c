@@ -13,10 +13,16 @@ int main() {
   int running = 1;
   pid_t pid;
 
-  char *args[] = {NULL};
-
   while (running) {
-    printf("#cisfun$ ");
+    if (!isatty(fileno(stdin))) {
+      int save_in = dup(STDIN_FILENO); 
+      dup2(fileno(stdin), STDOUT_FILENO);
+      printf("#cisfun$ ");
+      dup2(save_in, STDIN_FILENO); 
+      close(save_in);
+    } else {
+      printf("#cisfun$ ");
+    }
 
     if (fgets(command, MAX_LINE, stdin) == NULL) {
       if (feof(stdin)) {
@@ -39,6 +45,7 @@ int main() {
       perror("fork");
       continue;
     } else if (pid == 0) {
+      char *args[] = {NULL};
       if (execve(command, args, environ) == -1) {
         fprintf(stderr, "%s: No such file or directory\n", command);
       }
@@ -48,6 +55,5 @@ int main() {
       waitpid(pid, &status, 0);
     }
   }
-
   return 0;
 }
