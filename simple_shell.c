@@ -12,7 +12,7 @@ int main() {
   char command[MAX_LINE];
   int running = 1;
   pid_t pid;
-  int save_in;
+  int save_in = -1;
 
   while (running) {
     if (!isatty(fileno(stdin))) {
@@ -29,6 +29,7 @@ int main() {
     if (save_in != -1) {
       dup2(save_in, STDIN_FILENO);
       close(save_in);
+      save_in = -1;
     }
 
     if (fgets(command, MAX_LINE, stdin) == NULL) {
@@ -62,6 +63,5 @@ int main() {
       waitpid(pid, &status, 0);
     }
   }
-
   return 0;
 }
