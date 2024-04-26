@@ -13,7 +13,6 @@ int main() {
   int running = 1;
   pid_t pid;
 
-  // Flag to indicate if a command is piped
   int is_piped = 0;
 
   while (running) {
@@ -47,7 +46,7 @@ int main() {
       continue;
     } else if (pid == 0) {
       if (!isatty(fileno(stdin))) {
-        is_piped = 1;  // Set piped flag if not a terminal
+        is_piped = 1; 
       }
       char *args[] = {NULL};
       if (execve(command, args, environ) == -1) {
