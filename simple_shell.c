@@ -12,10 +12,11 @@ int main() {
   char command[MAX_LINE];
   int running = 1;
   pid_t pid;
+  int save_in;
 
   while (running) {
     if (!isatty(fileno(stdin))) {
-      int save_in = dup(STDIN_FILENO);
+      save_in = dup(STDIN_FILENO);
       if (save_in == -1) {
         perror("dup");
         break;
