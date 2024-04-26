@@ -1,45 +1,156 @@
-as a shell function by that name. Then it looks for a builtin command by that name. If a builtin command is not found, one of two things happen:
+.TH man 1 "26 April 2024" "" "simple_shell man page"
+.SH NAME
+.B simple_shell
+- Simple Shell for Holberton School
+.SH SYNOPSIS
+.B ./hsh
+[command] [options]
+.SH DESCRIPTION
+The simple shell (hsh) it's a simple program that contains and executes the basic functions of a shell (bash).This shell, like the others, takes keyboard commands and delivers them to the system to be executed. Whit this shell you can execute commands like ls for example.
+.br
 
-1. Command names containing a slash are simply executed without performing any searches.
+Shell is a program that takes commands from the keyboard and gives them to the operating system to perform.
 
-2. The shell searches each entry in PATH in turn for the command. The value of the PATH variable should be a series of entries separated by colons. Each entry consists of a directory name. The current directory may be indicated implicitly by an empty directory name, or explicitly by a single period.
-.SS Command Exit Status
-Each command has an exit status.
-.SS Builtins
-This section lists the builtin commands which are builtin because they need to perform some operation that can't be performed by a separate process.
-.TP
-.I exit
-Exits the shell
-.TP
-.I env
-Prints the current environment
-.TP
-.I setenv
-Initialize a new environment variable, or modify an existing one
-.TP
-.I unsetenv
-Remove an environment variable
-.TP
-.I cd
-Changes the current directory of the process
-.TP
-.I alias
-Prints a list of all aliases
-.TP
-.I help
-Displays the help page
-.TP
-.I history
-Displays the history list
-.SS Environment
-PATH' The default search path for executables.
+.B Overview
 
-PWD' The logical value of the current working directory. This is set by the cd command.
+This simple shell is a simplification of a command interpreter, similar to
+.B bash.
+.TP
+ Command [option]...	ls -la
+.SH OPTIONS
+Simple Shell
+operates in both
+.I interactive
+and
+.I non-interactive
+mode. The user may initiate
+.B simple shell
+and begin working or initate
+.B simple shell
+using commands meant to be run by the program.
+.SH ARGUMENTS
+The first argument, argument 0 is understood to be the command to be run by
+.B simple shell
+and arguments following as modifier or options.
 
-OLDPWD' The previous logical value of the current working directory. This is set by the cd command.
+.B Return value
+
+The return value of a simple command is its exit status. returns various values depending on the success of the program execution or if an error occurred.
+
+.B Example
+.PP
+
+$./hsh
+
+$ touch hello.txt
+
+$ ls
+
+.RS 3
+firts.txt
+.TB
+hello.txt
+.TB
+second.txt
+.RE
+$ |
+
+.RS +4
+[$ ./hsh
+.RE
+.RS +4
+[$ /bin/ls
+.RE
+.RS +4
+hsh firts.txt hello.txt second.txt
+.RE
+.RS +4
+$
+.RE
+.RS +4
+[$ exit
+.RE
+.RS +4
+$
+
+.RE
+.B Run pwd command:
+.RS +4
+[$ pwd
+.RE
+.RS +4
+/home/vagrant/simple_shell
+.RE
+
+.RE
+.B Run exit command:
+.RS +4
+[$ exit
+.RE
+.RS +4
+vagrant@vagrant-ubuntu-trusty-64:~/simple_shell$
+.RE
+
+.B Non-interactive mode:
+
+.RS +4
+$ echo "/bin/ls" | ./hsh
+.RE
+.RS +4
+firts.txt hello.txt second.txt test_ls_2
+.RE
+.RS +4
+$
+.RE
+.RS +4
+$ cat test_ls_2
+.RE
+.RS +4
+/bin/ls
+.RE
+.RS +4
+/bin/ls
+.RE
+.RS +4
+$
+.RE
+.RS +4
+$ cat test_ls_2 | ./hsh
+.RE
+.RS +4
+hsh main.c shell.c test_ls_2
+.RE
+.RS +4
+hsh main.c shell.c test_ls_2
+.RE
+.RS +4
+$
+.PP
+
+.SH RESERVED WORDS
+
+.B exit:
+quits the program, exit the shell.
+
+.B env:
+displays a list of environment variables
+
+
+.SH RESERVED KEY-WORDS
+
+.B ctrl + D:
+quits the program, exit the shell, similar to command exit.
+
+.B ctrl + C:
+ends the process that is running, useful to regain control of the system.
+
 .SH SEE ALSO
-dash(1)
+.I sh(1)
+,
+.I bash(1)
 .SH BUGS
-Not known.
-.SH AUTHOR
-Nacho Peralta & Kevin Fundora~
+Not found at the moment in the implemented functionalities, if you find any inform us.
+.SH AUTHORS
+Oscar Javier De León <oscardleon95@gmail.com>
+.br
+Juan Camilo Villa H. <villahjuancamilo@gmail.com>
